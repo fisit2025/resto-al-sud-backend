@@ -26,6 +26,7 @@ app.post('/chat', async (req, res) => {
 
     res.json({ reply: completion.data.choices[0].message.content });
   } catch (err) {
+    console.error("Errore nella richiesta:", err);
     res.status(500).send('Errore nella richiesta');
   }
 });
