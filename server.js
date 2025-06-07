@@ -25,10 +25,14 @@ app.post('/chat', async (req, res) => {
     });
 
     res.json({ reply: completion.data.choices[0].message.content });
-  } catch (err) {
-    console.error("Errore nella richiesta:", err);
-    res.status(500).send('Errore nella richiesta');
+} catch (err) {
+  if (err.response) {
+    console.error("Errore da OpenAI:", err.response.status, err.response.data);
+  } else {
+    console.error("Errore sconosciuto:", err.message);
   }
+  res.status(500).send('Errore nella richiesta');
+}
 });
 
 const PORT = process.env.PORT || 3000;
