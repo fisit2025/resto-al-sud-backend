@@ -17,7 +17,7 @@ app.post('/chat', async (req, res) => {
     const userMessage = req.body.message;
 
     const completion = await openai.createChatCompletion({
-      model: 'gpt-4',
+      model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: 'Sei un assistente che spiega il piano Resto al Sud in modo semplice e chiaro.' },
         { role: 'user', content: userMessage }
